@@ -13,6 +13,7 @@ namespace FlowerShops.Controllers
     [ApiController]
     public class ShopTypesController : ControllerBase
     {
+
         private readonly FlowerShopsContext _context;
 
         public ShopTypesController(FlowerShopsContext context)
