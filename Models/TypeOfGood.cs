@@ -8,10 +8,11 @@ namespace FlowerShops.Models
         public TypeOfGood()
         {
             Goods = new List<Good>();
+            ShopTypes = new List<ShopTypes>();
         }
 
         [Key]
-        public int Id;
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "This field can't be empty!")]
         public string Name { get; set; }
@@ -19,5 +20,6 @@ namespace FlowerShops.Models
         public string Description { get; set; }
 
         public virtual ICollection<Good> Goods { get; set; }
+        public virtual ICollection<ShopTypes> ShopTypes { get; set; }
     }
 }

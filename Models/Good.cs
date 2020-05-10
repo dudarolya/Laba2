@@ -6,7 +6,6 @@ namespace FlowerShops.Models
     {
         [Key]
         public int Id { get; set; }
-        [Key]
         public int TypeId { get; set; }
 
         [Required(ErrorMessage = "This field can't be empty!")]

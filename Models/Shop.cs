@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿  using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlowerShops.Models
@@ -8,13 +8,13 @@ namespace FlowerShops.Models
         public Shop()
         {
             Workers = new List<Worker>();
-            TypeOfGoods = new List<TypeOfGood>();
+            ShopTypes = new List<ShopTypes>();
         }
 
         [Key]
         public int Id { get; set; }
 
-        [Key]
+        [Required(ErrorMessage = "This field can't be empty!")]
         public int CityId { get; set; }
 
         [Required(ErrorMessage = "This field can't be empty!")]
@@ -32,6 +32,7 @@ namespace FlowerShops.Models
         public virtual City City { get; set; }
 
         public virtual ICollection<Worker> Workers { get; set; }
-        public virtual ICollection<TypeOfGood> TypeOfGoods { get; set; }
+        public virtual ICollection<ShopTypes> ShopTypes { get; set; }
+
     }
 }

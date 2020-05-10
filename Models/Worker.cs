@@ -6,8 +6,10 @@ namespace FlowerShops.Models
     {
         [Key]
         public int Id { get; set; }
-        [Key]
+
         public int ShopId { get; set; }
+
+        public string GenderName { get; set; }
 
         [Required(ErrorMessage = "This field can't be empty!")]
         public string Name { get; set; }
@@ -23,5 +25,6 @@ namespace FlowerShops.Models
         public string Phone { get; set; }
 
         public virtual Shop Shop { get; set; }
+        public virtual Gender Gender { get; set; }
     }
 }
