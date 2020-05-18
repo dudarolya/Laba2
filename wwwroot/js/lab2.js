@@ -65,7 +65,6 @@ function displayEditForm(id) {
 
 function updateShop() {
     const shopId = document.getElementById('edit-id').value;
-    const shopPhone = document.getElementById('edit-phone').value;
     const shopArea = document.getElementById('edit-area').value;
 
     const shop = {
@@ -77,7 +76,7 @@ function updateShop() {
         area: parseInt(shopArea, 10)
     };
 
-    fetch(`${uri}/${shopId}`, {
+    fetch(`${uri}/${shop.id}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
