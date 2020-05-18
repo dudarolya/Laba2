@@ -79,10 +79,14 @@ namespace FlowerShops.Controllers
         [HttpPost]
         public async Task<ActionResult<City>> PostCity(City city)
         {
-            _context.Cities.Add(city);
-            await _context.SaveChangesAsync();
+            if (_context.Cities.Where(c => c.Name.ToLower() == city.Name.ToLower()).Count() == 0)
+            {
+                _context.Cities.Add(city);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCity", new { id = city.Id }, city);
+                return CreatedAtAction("GetCity", new { id = city.Id }, city);
+            }
+            return NoContent();
         }
 
         // DELETE: api/Cities/5

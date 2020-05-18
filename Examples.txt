@@ -1,0 +1,37 @@
+new shop
+{
+        "cityId": 1,
+        "name": "ExoticFlora",
+        "address": "Vasylkivska 6, house 4",
+        "phone": "0931167465",
+        "area": 70,
+}
+new city
+{
+        "name": "Kharkiv"
+}
+new worker
+{
+        "shopId": 3,
+        "genderName": "Female",
+        "name": "Olena",
+        "surname": "Smolina",
+        "position": "Florist",
+        "phone": "0807968746",
+}
+new type of good
+{
+        "name": "Stripes",
+        "description": "Stripes for bouquets, compositions etc."
+}
+new good
+{
+        "typeofGoodId": 3,
+        "name": "Philodendron pots",
+        "retailPrice": 100,
+        "wholesalePrice": 86
+}
+new gender
+{
+        "name": "NewGender"
+}

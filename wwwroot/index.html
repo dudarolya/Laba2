@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Informatics 2020 Lab2 Flower Shops</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <h1>Informatics 2020 Lab2 Flower Shops</h1>
+    <h3>Add Shop</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addShop()">
+        <input type="number" id="add-cityId" placeholder="Shop City Id">
+        <input type="text" id="add-name" placeholder="New Shop">
+        <input type="text" id="add-address" placeholder="Shop Address">
+        <input type="number" id="add-phone" placeholder="Shop Phone Number">
+        <input type="number" id="add-area" placeholder="Shop Area">
+        <input type="submit" value="Add">
+    </form>
+
+    <div id="editShop">
+        <h3>Edit Shop</h3>
+        <form action="javascript:void(0);" onsubmit="updateShop()">
+            <input type="hidden" id="edit-id">
+            <input type="number" id="edit-cityId">
+            <input type="text" id="edit-name">
+            <input type="text" id="edit-address">
+            <input type="number" id="edit-phone">
+            <input type="number" id="edit-area">
+            <input type="submit" value="Save">
+            <a onclick="closeInput()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+
+    <p id="counter"></p>
+
+    <table>
+        <tr>
+            <th>City Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Area</th>
+        </tr>
+        <tbody id="shops"></tbody>
+    </table>
+
+    <script src="js/lab2.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getShops();
+    </script>
+</body>
+</html>

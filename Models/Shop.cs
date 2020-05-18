@@ -1,4 +1,5 @@
-﻿  using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlowerShops.Models
@@ -21,12 +22,13 @@ namespace FlowerShops.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "This field can't be empty!")]
-        public string Adress { get; set; }
+        public string Address { get; set; }
 
         [Phone(ErrorMessage = "Invalid phone number!")]
         public string Phone { get; set; }
 
         [Display(Name = "Shop area (in square metres)")]
+        [Range(0, Int32.MaxValue)]
         public int Area { get; set; }
 
         public virtual City City { get; set; }

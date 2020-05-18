@@ -33,6 +33,8 @@ namespace Lab2v1
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseRouting();
 

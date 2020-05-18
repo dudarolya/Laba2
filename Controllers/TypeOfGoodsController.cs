@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FlowerShops.Models;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace FlowerShops.Controllers
 {
@@ -79,10 +80,14 @@ namespace FlowerShops.Controllers
         [HttpPost]
         public async Task<ActionResult<TypeOfGood>> PostTypeOfGood(TypeOfGood typeOfGood)
         {
-            _context.TypeOfGoods.Add(typeOfGood);
-            await _context.SaveChangesAsync();
+            if (_context.TypeOfGoods.Where(t => t.Name.ToLower() == typeOfGood.Name.ToLower()).Count() == 0)
+            {
+                _context.TypeOfGoods.Add(typeOfGood);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTypeOfGood", new { id = typeOfGood.Id }, typeOfGood);
+                return CreatedAtAction("GetTypeOfGood", new { id = typeOfGood.Id }, typeOfGood);
+            }
+            return NoContent();
         }
 
         // DELETE: api/TypeOfGoods/5

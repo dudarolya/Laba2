@@ -79,24 +79,28 @@ namespace FlowerShops.Controllers
         [HttpPost]
         public async Task<ActionResult<Gender>> PostGender(Gender gender)
         {
-            _context.Genders.Add(gender);
-            try
+            if (_context.Genders.Where(g => g.Name.ToLower() == gender.Name.ToLower()).Count() == 0)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (GenderExists(gender.Name))
+                _context.Genders.Add(gender);
+                try
                 {
-                    return Conflict();
+                    await _context.SaveChangesAsync();
                 }
-                else
+                catch (DbUpdateException)
                 {
-                    throw;
+                    if (GenderExists(gender.Name))
+                    {
+                        return Conflict();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-            }
 
-            return CreatedAtAction("GetGender", new { id = gender.Name }, gender);
+                return CreatedAtAction("GetGender", new { id = gender.Name }, gender);
+            }
+            return NoContent();
         }
 
         // DELETE: api/Genders/5

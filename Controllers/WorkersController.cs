@@ -79,10 +79,16 @@ namespace FlowerShops.Controllers
         [HttpPost]
         public async Task<ActionResult<Worker>> PostWorker(Worker worker)
         {
-            _context.Workers.Add(worker);
-            await _context.SaveChangesAsync();
+            if (_context.Workers.Where(w => w.Name.ToLower() == worker.Name.ToLower()
+            && w.Surname.ToLower() == worker.Surname.ToLower()
+            && w.Phone == worker.Phone).Count() == 0)
+            {
+                _context.Workers.Add(worker);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWorker", new { id = worker.Id }, worker);
+                return CreatedAtAction("GetWorker", new { id = worker.Id }, worker);
+            }
+            return NoContent();
         }
 
         // DELETE: api/Workers/5
@@ -94,7 +100,6 @@ namespace FlowerShops.Controllers
             {
                 return NotFound();
             }
-
             _context.Workers.Remove(worker);
             await _context.SaveChangesAsync();
 

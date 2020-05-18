@@ -79,10 +79,15 @@ namespace FlowerShops.Controllers
         [HttpPost]
         public async Task<ActionResult<Shop>> PostShop(Shop shop)
         {
-            _context.Shops.Add(shop);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetShop", new { id = shop.Id }, shop);
+            if(_context.Shops.Where(s => s.Name.ToLower() == shop.Name.ToLower()
+            && s.CityId == shop.CityId
+            && s.Phone == shop.Phone).Count() == 0)
+            {
+                _context.Shops.Add(shop);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetShop", new { id = shop.Id }, shop);
+            }
+            return NoContent();
         }
 
         // DELETE: api/Shops/5
